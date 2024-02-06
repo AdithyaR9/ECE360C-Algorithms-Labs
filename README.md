@@ -1,1 +1,1 @@
-# Algorithms-ECE-360C-
+Algorithms ECE 360 Class
