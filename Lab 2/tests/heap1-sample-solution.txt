@@ -1,0 +1,54 @@
+Original Heap:
+<index: 0, id: 3, value: 1>
+<index: 1, id: 4, value: 8>
+<index: 2, id: 2, value: 2>
+<index: 3, id: 1, value: 23>
+<index: 4, id: 0, value: 38>
+<index: 5, id: 5, value: 10>
+<index: 6, id: 6, value: 25>
+
+Heap after inserting a member r0(id: 7, value: 54): 
+<index: 0, id: 3, value: 1>
+<index: 1, id: 4, value: 8>
+<index: 2, id: 2, value: 2>
+<index: 3, id: 1, value: 23>
+<index: 4, id: 0, value: 38>
+<index: 5, id: 5, value: 10>
+<index: 6, id: 6, value: 25>
+<index: 7, id: 7, value: 54>
+
+The minimal member of the heap: 
+id: 3 value: 1
+
+The heap after extracting the minimal member: 
+<index: 0, id: 2, value: 2>
+<index: 1, id: 4, value: 8>
+<index: 2, id: 5, value: 10>
+<index: 3, id: 1, value: 23>
+<index: 4, id: 0, value: 38>
+<index: 5, id: 7, value: 54>
+<index: 6, id: 6, value: 25>
+
+The heap after changing the value of r0 from 54 to 1
+<index: 0, id: 7, value: 1>
+<index: 1, id: 4, value: 8>
+<index: 2, id: 2, value: 2>
+<index: 3, id: 1, value: 23>
+<index: 4, id: 0, value: 38>
+<index: 5, id: 5, value: 10>
+<index: 6, id: 6, value: 25>
+
+The heap after deleting r0: 
+<index: 0, id: 2, value: 2>
+<index: 1, id: 4, value: 8>
+<index: 2, id: 5, value: 10>
+<index: 3, id: 1, value: 23>
+<index: 4, id: 0, value: 38>
+<index: 5, id: 6, value: 25>
+
+// This is just a sample solution. Your output may vary.
+// As long as your output satisfy the following requirements, then it should be correct:
+//  1. Remains a valid heap
+//  2. Do the call/operation correctly
+// (This is not how we are going to test your heap)
+// (You can try more operations/tests, print your heap and check the output)
