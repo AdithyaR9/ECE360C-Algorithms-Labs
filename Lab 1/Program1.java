@@ -1,7 +1,3 @@
-/*
- * Name: Adithya Ramanathan
- * EID: ar74353
- */
 
 import java.util.ArrayList;
 import java.util.Arrays;
