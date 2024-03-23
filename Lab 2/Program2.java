@@ -15,40 +15,55 @@ public class Program2 {
     /**
      * findMinimumDistance
      *
-     * @param problem  - contains the regions, the start region and the end region of the graph
+     * @param problem - contains the regions, the start region and the end region of the graph
      * @return the minimum distance possible to get from start region to end region in the given problem.
      * Assume the given graph is always connected.
      */
     public int findMinimumRouteDistance(Problem problem) {
         // TODO
 
-        // Initialize
-        ArrayList<Region> regions = problem.getRegions();
-        PriorityQueue<Region> pq = new PriorityQueue<>(Comparator.comparingInt(Region::getMinDist));
-        problem.reset_minDist();
+        // Steps 1-2 - initializations
+        resetMinDist(problem);
         problem.getStartRegion().setMinDist(0);
-        pq.offer(problem.getStartRegion());
 
-        // Iterate until the priority queue is empty
-        while (!pq.isEmpty()) {
-            // min distance region
-            Region cRegi = pq.poll();
+        // Steps 3-5 - find min route
+        runDijkstra(problem);
 
-            // peek all nearby regions
-            for (Edge edge : cRegi.getEdges()) {
-                Region nearby = edge.getDestination();
-                int distanceToNeighbor = cRegi.getMinDist() + edge.getWeight();
+        // Step 6 - return solution
+        return problem.getEndRegion().getMinDist();
+    }
 
-                // relax region node
-                if (distanceToNeighbor < nearby.getMinDist()) {
-                    nearby.setMinDist(distanceToNeighbor);
-                    pq.offer(nearby);
-                }
+    private void resetMinDist(Problem problem) {
+        for (Region r : problem.getRegions()) {
+            r.setMinDist(Integer.MAX_VALUE);
+        }
+    }
+
+    private void runDijkstra(Problem problem) {
+        Heap<Region> priorityQ = new Heap<>();
+        ArrayList<Region> regions = problem.getRegions();
+        priorityQ.buildHeap(regions);
+
+        while (priorityQ.getSize() > 0) {
+            Region r = priorityQ.extractMin();
+            ArrayList<Region> nearbys = r.getNeighbors();
+            ArrayList<Integer> weightages = r.getWeights();
+
+            for (int x = 0; x < nearbys.size(); x++) {
+                Region near = nearbys.get(x);
+                int weightage = weightages.get(x);
+                int dist = r.getMinDist() + weightage;
+
+                relaxRegion(near, dist, priorityQ);
             }
         }
+    }
 
-        // return min dist
-        return problem.getEndRegion().getMinDist();
+    private void relaxRegion(Region nearby, int distance, Heap<Region> minHeap) {
+        if (distance < nearby.getMinDist()) {
+            nearby.setMinDist(distance);
+            minHeap.changeKey(nearby, distance);
+        }
     }
 
 }

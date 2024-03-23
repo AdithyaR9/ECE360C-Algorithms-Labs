@@ -86,6 +86,7 @@ public class Heap<HeapMemberGeneric extends HeapMember> {
     public void insertNode(HeapMemberGeneric in) {
         // TODO
         minHeap.add(in);
+        in.setIndex(minHeap.size() - 1);
         heapifyUp(minHeap.size() - 1);
     }
 
@@ -97,7 +98,9 @@ public class Heap<HeapMemberGeneric extends HeapMember> {
      */
     public HeapMemberGeneric findMin() {
         // TODO
-        return minHeap.get(0);
+        if (minHeap.isEmpty()) {
+            return null;
+        } else return minHeap.get(0);
     }
 
     /**
@@ -108,9 +111,9 @@ public class Heap<HeapMemberGeneric extends HeapMember> {
      */
     public HeapMemberGeneric extractMin() {
         //TODO
-        HeapMemberGeneric heapMember = findMin();
+        HeapMemberGeneric heapy = findMin();
         delete(minHeap.get(0));
-        return heapMember;
+        return heapy;
     }
 
     /**
@@ -123,6 +126,7 @@ public class Heap<HeapMemberGeneric extends HeapMember> {
      */
     public void delete(HeapMemberGeneric gen) {
         // TODO
+
         int idx = gen.getIndex();
         HeapMemberGeneric tempMember = minHeap.get(minHeap.size() - 1);
         HeapMemberGeneric toRemove = minHeap.get(idx);
@@ -156,6 +160,7 @@ public class Heap<HeapMemberGeneric extends HeapMember> {
      */
     public void changeKey(HeapMemberGeneric r, int newKey) {
         // TODO
+
         int prevDist = r.getValue();
         int idx = r.getIndex();
 
